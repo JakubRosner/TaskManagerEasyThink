@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Edit Task
+{% endblock  %}
+
+{%block content%}
+    {%if user.id == task.User_id%}
+        </br><h1>Edit task</h1></br>
+        {%load crispy_forms_tags %}
+        <form method ='post'>
+        {% csrf_token %}
+        {{form|crispy }}
+        <button class = 'btn btn-secondary'>Save </button>
+        </br></br>
+    {% else %}
+      <strong><p>You can't be here and you know it! <a href = '/login'>Here</a></p></strong>
+    {% endif %}
+{% endblock %}
+

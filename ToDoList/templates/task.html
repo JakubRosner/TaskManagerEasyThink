@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if user.is_authenticated %}</br>
+        {% if user.first_name %}
+            <h2>Welcome {{user.first_name}}</h2>
+        {% else %}
+            <h2>Welcome {{user.username}}</h2>
+        {% endif %}
+
+        <ul></br></br>
+            {% if user.task.all %}
+            {% for task in user.task.all%}
+                <li><strong>{{task.title}}</strong>
+                - {{task.description}}
+                {% if task.done %}
+                - <i>Completed </i></br>
+                {% else %}
+                - <i>To be done</i></br>
+                {% endif %}
+            <i><a href = "{% url 'edit_task' task.pk %}">Edit Task</a>
+                <a href = "{% url 'delete_task' task.pk %}">Delete Task</a></i></li></br>
+            {% endfor %}
+            <i><a href = "{% url 'create_task'%}">Add Task</a></i>
+            {% else %}
+            No tasks yet. <a href = "{% url 'create_task'%}">Add Task?</a>
+            {% endif %}
+        </ul>
+    {% else %}
+        </br>
+        <h3> You have to login to access Task Manager app</h3> 
+        <p><strong>You can login <a href= "{% url 'login' %}"> here</a></strong></br>
+        <strong>Don't have an account? Create one <a href = "{% url 'register' %}"> here </a></strong></p>
+    {% endif %}
+{% endblock %}

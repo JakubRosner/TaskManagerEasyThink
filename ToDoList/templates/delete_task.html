@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Delete Task
+{% endblock  %}
+
+{%block content%}
+    {%if user.id == task.User_id%}
+        </br><h1>Delete task</h1></br>
+        {%load crispy_forms_tags %}
+        <form method ='post'>
+        {% csrf_token %}
+        <strong> You are about to delete <i>"{{task.title}}"</i> </strong></br></br>
+        <button class = 'btn btn-secondary'>Delete</button>
+        </br></br>
+    {% else %}
+        <strong><p>You can't be here and you know it! <a href = '/login'>Here</a></p></strong>
+    {% endif %}
+{% endblock %}

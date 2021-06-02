@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Create task 
+{% endblock  %}
+
+{%block content%}
+    {%if user.is_authenticated%}
+        </br><h1>Add new task</h1></br>
+        {%load crispy_forms_tags %}
+        <form method ='post'>
+        {% csrf_token %}
+        {{form|crispy}}
+        <button class = 'btn btn-secondary'>Create Task</button>
+        </br></br>
+    {% else %}
+        </br>
+        <h3> You have to login to access Task Manager app</h3> 
+        <p><strong>You can login <a href= "{% url 'login' %}"> here</a></strong></br>
+        <strong>Don't have an account? Create one <a href = "{% url 'register' %}"> here </a></strong></p>
+    {% endif %}
+{% endblock %}
+

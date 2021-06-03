@@ -7,6 +7,7 @@ class Task(models.Model):
         ('C', 'Completed'),
         ('T', 'To be done'),
     ]
+    # Used OnetoMany relationship for User
     User = models.ForeignKey(User, on_delete=models.CASCADE,
                              related_name="task", null=True)
     title = models.CharField(max_length=32, null=True)

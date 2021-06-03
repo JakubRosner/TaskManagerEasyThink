@@ -17,6 +17,7 @@ class TaskView(generic.ListView):
     model = Task
 
 
+# Task will automatically get User_id so USER can't do it manually
 class CreateTaskView(generic.CreateView):
     template_name = "add_task.html"
     model = Task

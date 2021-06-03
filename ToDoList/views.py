@@ -15,6 +15,7 @@ class HomePageView(generic.ListView):
 class TaskView(generic.ListView):
     template_name = "task.html"
     model = Task
+    ordering = ["-done"]
 
 
 class CreateTaskView(generic.CreateView):

@@ -12,12 +12,8 @@
             {% if user.task.all %}
             {% for task in user.task.all%}
                 <li><strong>{{task.title}}</strong>
-                - {{task.description}}
-                {% if task.done %}
-                - <i>Completed </i></br>
-                {% else %}
-                - <i>To be done</i></br>
-                {% endif %}
+                - {{task.description}} - {{task.get_done_display}}</br>
+
             <i><a href = "{% url 'edit_task' task.pk %}">Edit Task</a>
                 <a href = "{% url 'delete_task' task.pk %}">Delete Task</a></i></li></br>
             {% endfor %}

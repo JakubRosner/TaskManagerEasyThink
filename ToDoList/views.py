@@ -2,6 +2,7 @@ from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.forms import PasswordChangeForm
+from django.shortcuts import get_object_or_404
 
 from .models import Task
 from .forms import SingUpForm, EditUserForm
@@ -55,7 +56,8 @@ class UserEditView(generic.UpdateView):
     success_url = reverse_lazy('home')
 
     def get_object(self):
-        return self.request.user
+        user = get_object_or_404(Task, pk=self.request.user.id)
+        return user
 
 
 class PasswordsChangeView(PasswordChangeView):

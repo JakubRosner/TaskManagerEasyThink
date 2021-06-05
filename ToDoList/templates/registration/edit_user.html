@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    {% if user.is_authenticated %}
     </br><h1>Edit User</h1></br>
     {%load crispy_forms_tags %}
     <form method = "post" class  = "form-group">
@@ -8,4 +9,7 @@
         {{form|crispy}}</br>
         <button type = 'submit' class = "btn btn-success">Update</button>
     </form>
+    {% else %}
+        <strong><p>You can't be here and you know it! <a href = '/login'>Here</a></p></strong>
+    {% endif %}
 {% endblock content %}
